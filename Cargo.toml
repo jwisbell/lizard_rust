@@ -1,0 +1,16 @@
+[package]
+name = "fits_lizard"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "fits_lizard"
+crate-type = ["cdylib"]
+
+
+[dependencies]
+pyo3 = { version = "0.20", features = ["extension-module"] }
+numpy = "^0.20"
+ndarray = { version = "0.15", features = ["rayon"] }
+fitsio = "0.18"
+rayon = "1.7"

@@ -55,23 +55,6 @@ fn read_fits_image(path: &Path) -> Result<(Array2<f32>, Option<f32>, Option<f64>
 }
 
 /// Compute mean image from list of paths
-/*fn compute_mean_image(paths: &[String]) -> Result<Array2<f32>, Box<dyn std::error::Error + Send + Sync>> {
-    let mut sum: Option<Array2<f32>> = None;
-    let mut count = 0f32;
-
-    for path in paths {
-        let (img,_,_) = read_fits_image(Path::new(path))?;
-        //println!("Image {}/{} loaded", count+1.0, paths.len());
-        match &mut sum {
-            Some(s) => *s += &img,
-            None => sum = Some(img),
-        }
-        count += 1.0;
-    }
-
-    let mean = sum.ok_or("No images to average")? / count;
-    Ok(mean)
-}*/
 fn compute_mean_image(paths: &[String]) -> Result<Array2<f32>, Box<dyn std::error::Error + Send + Sync>> {
     // Parallel map + reduce
     let (sum, count) = paths
